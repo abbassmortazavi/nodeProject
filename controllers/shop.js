@@ -8,7 +8,7 @@ exports.getIndex = (req , res , next)=>{
         res.render('shop/productList' , {
             products: result ,
             pageTitle: 'Shop Me' ,
-            path:'/' ,
+            path: '/'
         });
     }).catch(err=>{
         console.log(err);
@@ -20,11 +20,10 @@ exports.getIndex = (req , res , next)=>{
 exports.getProducts = (req , res , next)=>{
     Product.find()
         .then(result => {
-        console.log(result);
         res.render('shop/productList' , {
             products: result ,
             pageTitle: 'Shop Me' ,
-            path:'/' ,
+            path: '/'
         });
     }).catch(err=>{
         console.log(err);
@@ -44,17 +43,6 @@ exports.getProductDetail = (req , res , next) =>{
         }).catch(err => {
             console.log(err);
         });
-    // Product.productDetail(id)
-    //     .then(result => {
-    //         console.log(result);
-    //         res.render('shop/product-detail', {
-    //             pageTitle: 'Product Detail',
-    //             path: '/product-detail',
-    //             product: result
-    //         });
-    //     }).catch(err => {
-    //         console.log(err);
-    //     });
 };
 
 exports.getCart = (req , res , next)=>{

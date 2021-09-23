@@ -2,8 +2,9 @@ const Product = require('../model/product');
 
 exports.getAddProduct = (req , res , next)=>{
     res.render('admin/add-product' , {path:'/admin/add-product' ,
-     pageTitle:'Insert Product' ,
-      activeProduct:true
+        pageTitle:'Insert Product' ,
+        activeProduct: true
+
     });
 };
 
@@ -18,7 +19,7 @@ exports.addProduct = (req , res , next)=>{
         price: price,
         description: description,
         userId: req.user._id
-    }
+    };
     const product = new Product(data);
     product.save()
         .then(result => {
@@ -39,7 +40,7 @@ exports.getProducts = (req , res , next)=>{
         res.render('admin/products' , {
             products: result ,
             pageTitle: 'Admin Products' ,
-            path:'/admin/products' ,
+            path: '/admin/products'
         });
     }).catch(err=>{
         console.log(err);
@@ -49,15 +50,4 @@ exports.deleteProduct = (req , res , next)=>{
     const id = req.body.id;
     Product.destroy({where: {id:id}});
     res.redirect('/admin/products');
-    // Product.destroy({where: {id:id}})
-    // .then(result=>{
-    //     const products = Product.findAll();
-    //     res.render('admin/products' , {
-    //         pageTitle: 'Admin Products' ,
-    //         path:'/admin/products' ,
-    //         products: products 
-    //     });
-    // }).catch(err=>{
-    //     console.log(err);
-    // });
 };
