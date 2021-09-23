@@ -2,7 +2,22 @@
 <body>
     <%- include('../includes/header.ejs') %>
     <main>
+        <% if(orders.length < 0) { %>
         <h1>Orders</h1>
+        <% } else { %>
+            <ul>
+                <% for(let order of orders) { %>
+                    <li>
+                        <h1><%= order.id %></h1>
+                        <ul>
+                            <% order.products.forEach(product => { %>
+                                <li><%= product.title %> (<%= product.orderItem.quantity %> )</li>    
+                            <% }); %>
+                        </ul>
+                    </li>
+                <% } %>
+            </ul>
+            <% } %>
     </main>
 </body>
 </html>
