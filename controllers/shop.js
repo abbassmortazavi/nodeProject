@@ -18,7 +18,7 @@ exports.getIndex = (req , res , next)=>{
 };
 
 exports.getProducts = (req , res , next)=>{
-    Product.find()
+    Product.find({userId:req.user._id})
         .then(result => {
         res.render('shop/productList' , {
             products: result ,

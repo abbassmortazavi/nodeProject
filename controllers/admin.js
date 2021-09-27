@@ -31,7 +31,7 @@ exports.addProduct = (req , res , next)=>{
 };
 
 exports.getProducts = (req , res , next)=>{
-    Product.find()
+    Product.find({userId:req.user._id})
         // .select('title description price -_id')=>fetch without id
         .select('title description price')
         .populate('userId' , 'name')

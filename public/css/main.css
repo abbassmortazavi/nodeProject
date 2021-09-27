@@ -45,3 +45,6 @@ main{
     margin-right: 5px;
     float:right ;
 }
+.user-message{
+    color: rgb(223, 68, 68);
+}
