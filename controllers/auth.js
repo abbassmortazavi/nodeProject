@@ -2,6 +2,10 @@ const bcrypt = require('bcryptjs');
 const User = require('../model/user');
 const crypto = require('crypto');
 const user = require('../model/user');
+const {validationResult} = require('express-validator');
+
+
+
 exports.getLogin = (req, res, next) => {
     console.log(req.session.isLoggedIn);
     res.render('auth/login' , {
@@ -59,6 +63,16 @@ exports.postSignUp = (req , res , next)=>{
     const email = req.body.email;
     const cart = {item:[]};
     const passwordConfirm = req.body.passwordConfirm;
+    const errors = validationResult(req);
+    console.log(errors);
+    if (!errors.isEmpty()) {
+        //console.log(errors.array());
+        return res.status(422).render('auth/signup' , {
+            pageTitle: 'Sign Up',
+            path: '/signup',
+            errorMessage: errors.array()[0].msg
+        });
+    }
 
     User.findOne({email:req.body.email})
         .then(userExist=>{
