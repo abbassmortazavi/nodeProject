@@ -48,3 +48,6 @@ main{
 .user-message{
     color: rgb(223, 68, 68);
 }
+.invalid{
+    border: solid red;
+}

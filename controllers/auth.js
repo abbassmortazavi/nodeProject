@@ -55,7 +55,8 @@ exports.getSignUp = (req , res , next)=>{
     res.render('auth/signup' , {
         pageTitle: 'Sign Up',
         path: '/signup',
-        errorMessage: req.flash('error')
+        errorMessage: req.flash('error'),
+        validationErrors: []
     });
 };
 exports.postSignUp = (req , res , next)=>{
@@ -70,7 +71,8 @@ exports.postSignUp = (req , res , next)=>{
         return res.status(422).render('auth/signup' , {
             pageTitle: 'Sign Up',
             path: '/signup',
-            errorMessage: errors.array()[0].msg
+            errorMessage: errors.array()[0].msg,
+            validationErrors: errors.array()
         });
     }
 
@@ -94,6 +96,7 @@ exports.postSignUp = (req , res , next)=>{
             res.redirect('/login');
     }).catch(err=>{
             console.log(err);
+             res.redirect('/500');
     });
 };
 
